@@ -16,14 +16,6 @@ class Deleted_Portions extends StatelessWidget {
       ),
       body: ListView(children: <Widget>[
         ListTile(
-            leading: Icon(Icons.all_inclusive),
-            title: Text('Physics', style: new TextStyle(fontSize: 30.0)),
-            subtitle: Text("View the Physics Deleted Portions"),
-            trailing: Icon(Icons.keyboard_arrow_right),
-            onTap: () {
-              runApp(Physics_Deleted_Portions());
-            }),
-        ListTile(
           leading: Icon(Icons.timeline),
           title: Text("Chemistry",
               style: new TextStyle(
@@ -31,7 +23,7 @@ class Deleted_Portions extends StatelessWidget {
               )),
           trailing: Icon(Icons.keyboard_arrow_right),
           onTap: () {
-            runApp(Chemistry_Deleted_Portions());
+            runApp(TeXViewDocumentExamples2());
           },
           subtitle: Text("View the Chemistry Deleted Portions"),
         ),
@@ -44,9 +36,17 @@ class Deleted_Portions extends StatelessWidget {
           trailing: Icon(Icons.keyboard_arrow_right),
           subtitle: Text("View the Maths Deleted Portions"),
           onTap: () {
-            runApp(Maths_Deleted_Portions());
+            runApp(TeXViewDocumentExamples());
           },
         ),
+        ListTile(
+            leading: Icon(Icons.all_inclusive),
+            title: Text('Physics', style: new TextStyle(fontSize: 30.0)),
+            subtitle: Text("View the Physics Deleted Portions"),
+            trailing: Icon(Icons.keyboard_arrow_right),
+            onTap: () {
+              runApp(TeXViewDocumentExamples3());
+            }),
         ListTile(
           leading: Icon(Icons.arrow_back),
           title: Text("Back",

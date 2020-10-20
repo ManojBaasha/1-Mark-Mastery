@@ -17,6 +17,15 @@ class A2 extends StatefulWidget {
 class _AState2 extends State<A2> {
   final _questions = const [
     {
+      'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
       'questionText': 'What is the distance of closest approach ?',
       'answers': [
         {
@@ -139,6 +148,16 @@ class _AState2 extends State<A2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(A());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

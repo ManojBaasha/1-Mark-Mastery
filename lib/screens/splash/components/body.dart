@@ -21,11 +21,11 @@ class _BodyState extends State<Body> {
     },
     {
       "text": "We help students learn 1 Mark Questions \n At Home!",
-      "image": "assets/images/masterpiece.png"
+      "image": "assets/images/studyfromhome.jpg"
     },
     {
       "text": "We show the easy way to learn. \n Lets get Started",
-      "image": "assets/images/masterpiece.png"
+      "image": "assets/images/elearning.webp"
     },
   ];
   @override

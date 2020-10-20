@@ -19,6 +19,15 @@ class _MMState2 extends State<MM2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Why is the core of electromagnetic made of ferromagnetic materials?',
       'answers': [
         {
@@ -310,6 +319,17 @@ class _MMState2 extends State<MM2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                runApp(MM());
+              },
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+              ),
+              heroTag: "Back",
+            ),
       ),
     );
   }

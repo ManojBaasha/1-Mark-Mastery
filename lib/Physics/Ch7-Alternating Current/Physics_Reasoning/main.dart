@@ -18,6 +18,15 @@ class _ACState2 extends State<AC2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'The power factor of an a.c circuit is 0.5. What is the phase difference between voltage and current in the circuit?[March 2016]',
       'answers': [
         {
@@ -179,6 +188,16 @@ class _ACState2 extends State<AC2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(AC());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

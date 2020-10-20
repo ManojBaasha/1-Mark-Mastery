@@ -19,6 +19,15 @@ class _MCState2 extends State<MC2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Write the conditions under which an electron will move undeflected in the presence of a crossed electric and magnetic fields',
       'answers': [
         {
@@ -259,6 +268,17 @@ class _MCState2 extends State<MC2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                runApp(MC());
+              },
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+              ),
+              heroTag: "Back",
+            ),
       ),
     );
   }

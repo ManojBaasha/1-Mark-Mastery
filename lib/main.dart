@@ -9,7 +9,8 @@ import 'package:class_app/screens/splash/splash_screen.dart';
 import 'package:class_app/theme.dart';
 import 'about.dart';
 import 'review.dart';
-import 'dart:async';
+import 'info.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,17 +21,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations(
+      [
+        DeviceOrientation.portraitUp,
+      ],
+    );
     return new WillPopScope(
-        onWillPop: () async => false,
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: theme(),
-          // home: SplashScreen(),
-          // We use routeName so that we dont need to remember the name
-          initialRoute: SplashScreen.routeName,
-          routes: routes,
-        ));
+      onWillPop: () async => false,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: theme(),
+        // home: SplashScreen(),
+        // We use routeName so that we dont need to remember the name
+        initialRoute: SplashScreen.routeName,
+        routes: routes,
+      ),
+    );
   }
 }
 
@@ -120,14 +127,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     height: MediaQuery.of(context).size.height - 300.0,
                     child: ListView(
                       children: [
-                        _buildFoodItem(
+                        _buildlist(
                             Physics(), 'Physics', '', 'assets/physics.png'),
-                        _buildFoodItem(Chemistry(), 'Chemistry', '',
+                        _buildlist(Chemistry(), 'Chemistry', '',
                             'assets/chemistry.png'),
-                        _buildFoodItem(
-                            Maths(), 'Maths', '', 'assets/maths.jpg'),
-                        _buildFoodItem(Deleted_Portions(),
-                            'Deleted Portions 20-21', '', 'assets/delete.png'),
+                        _buildlist(Maths(), 'Maths', '', 'assets/maths.jpg'),
+                        _buildlist(Deleted_Portions(), 'Deleted Portions 20-21',
+                            '', 'assets/delete.png'),
                       ],
                     ),
                   ),
@@ -145,11 +151,16 @@ class _MyHomePageState extends State<MyHomePage> {
                             width: 1.0),
                         borderRadius: BorderRadius.circular(10.0),
                       ),
-                      child: Center(
-                        child: Icon(
-                          Icons.info,
-                          color: Colors.black,
+                      child: FlatButton(
+                        child: Center(
+                          child: Icon(
+                            Icons.info,
+                            color: Colors.black,
+                          ),
                         ),
+                        onPressed: () {
+                          runApp(info());
+                        },
                       ),
                     ),
                     Container(
@@ -210,17 +221,17 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-Widget _buildFoodItem(
-    var nextPage, String foodName, String price, String ImgPath) {
+Widget _buildlist(var nextPage, String foodName, String price, String ImgPath) {
   return Padding(
-      padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
-      child: InkWell(
-          onTap: () {},
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                  child: Row(children: [
+    padding: EdgeInsets.only(left: 10.0, right: 10.0, top: 10.0),
+    child: InkWell(
+      onTap: () {},
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Container(
+            child: Row(
+              children: [
                 Hero(
                     tag: ImgPath,
                     child: Image(
@@ -248,13 +259,17 @@ Widget _buildFoodItem(
                     runApp(nextPage);
                   },
                 )
-              ])),
-              IconButton(
-                  icon: Icon(Icons.navigate_next),
-                  color: Colors.black,
-                  onPressed: () {
-                    runApp(nextPage);
-                  })
-            ],
-          )));
+              ],
+            ),
+          ),
+          IconButton(
+              icon: Icon(Icons.navigate_next),
+              color: Colors.black,
+              onPressed: () {
+                runApp(nextPage);
+              })
+        ],
+      ),
+    ),
+  );
 }

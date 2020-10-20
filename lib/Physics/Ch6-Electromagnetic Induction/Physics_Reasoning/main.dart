@@ -19,6 +19,15 @@ class _EIState2 extends State<EI2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Name the phenomenon which shows the quantum nature of electromagnetic nature of electromagnetic radiation.[March2017]',
       'answers': [
         {
@@ -160,6 +169,17 @@ class _EIState2 extends State<EI2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                runApp(EI());
+              },
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+              ),
+              heroTag: "Back",
+            ),
       ),
     );
   }

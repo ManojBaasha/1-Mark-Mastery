@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             fontFamily: 'Montserrat',
                             color: Colors.white,
                             fontSize: 25.0)),
-                    Text(' App',
+                    Text(' Author',
                         style: TextStyle(
                             fontFamily: 'Montserrat',
                             color: Colors.white,
@@ -86,7 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: Container(
                         height: MediaQuery.of(context).size.height - 300.0,
                         child: Text(
-                          'context',
+                          'Hi! I\'m Manoj Elango, I\'m a CBSE 12th grader too and this is my first App!'
+                          ' I\'ve been working on this app for almost 3 months now and its finally here!'
+                          ' I developed this app just to help the students to learn during the quarantine and to gain more resources easily and for free \n '
+                          'To support me and for more content, don\'t forget to share this app with your friends',
                           style: TextStyle(
                             fontFamily: 'Montserrat',
                             color: Colors.black,

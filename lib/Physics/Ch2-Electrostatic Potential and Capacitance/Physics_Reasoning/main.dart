@@ -285,6 +285,16 @@ class _ESState2 extends State<ES2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(ES());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

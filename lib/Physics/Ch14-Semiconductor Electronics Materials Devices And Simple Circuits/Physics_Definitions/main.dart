@@ -74,7 +74,7 @@ class TeXViewDocumentExamples extends StatelessWidget {
         home: Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("RELATION AND FUNCTIONS"),
+        title: Text("Ch14-Semiconductor Electronics Materials Devices And Simple Circuits"),
       ),
       body: ListView(
         physics: ScrollPhysics(),
@@ -114,19 +114,16 @@ class TeXViewDocumentExamples extends StatelessWidget {
               ),
             ),
           ),
-          Ink(
-            color: Colors.green[900],
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: ListTile(
-              leading: Icon(Icons.add_circle),
-              title: Text('Back',
-                  style: new TextStyle(fontSize: 15.0, color: Colors.white)),
-              trailing: Icon(Icons.keyboard_arrow_right),
+          ListTile(
+              leading: Icon(Icons.arrow_back),
+              title: Text("Back",
+                  style: new TextStyle(
+                    fontSize: 30.0,
+                  )),
               onTap: () {
                 runApp(S());
               },
             ),
-          ),
         ],
       ),
     ));

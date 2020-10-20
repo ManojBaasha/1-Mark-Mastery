@@ -1,22 +1,54 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_tex/flutter_tex.dart';
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:http/http.dart' as http;
 import 'package:class_app/Maths/Ch10-Vector Algebra/Maths.dart';
 
-class TeXExample {}
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
 
-class TeXViewDocumentExamples extends StatelessWidget {
-  final TeXViewRenderingEngine renderingEngine;
+class _MyAppState extends State<MyApp> {
+  String assetPDFPath = "";
+  String urlPDFPath = "";
 
-  TeXViewDocumentExamples(
-      {this.renderingEngine = const TeXViewRenderingEngine.mathjax()});
+  @override
+  void initState() {
+    super.initState();
+
+    getFileFromAsset("assets/maths/ch10/1.pdf").then((f) {
+      setState(() {
+        assetPDFPath = f.path;
+        print(assetPDFPath);
+      });
+    });
+  }
+
+  Future<File> getFileFromAsset(String asset) async {
+    try {
+      var data = await rootBundle.load(asset);
+      var bytes = data.buffer.asUint8List();
+      var dir = await getApplicationDocumentsDirectory();
+      File file = File("${dir.path}/1.pdf");
+
+      File assetFile = await file.writeAsBytes(bytes);
+      return assetFile;
+    } catch (e) {
+      throw Exception("Error opening asset file");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.white,
         appBar: AppBar(
+          title: Text("Open it, I dare youl"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             color: Colors.white,
@@ -24,65 +56,116 @@ class TeXViewDocumentExamples extends StatelessWidget {
               runApp(VA());
             },
           ),
-          title: Text("Differential Equations"),
         ),
-        body: ListView(
-          physics: ScrollPhysics(),
-          children: <Widget>[
-            _image('assets/maths/ch10/one.png'),
-            _image('assets/maths/ch10/two.png'),
-            _image('assets/maths/ch10/three.png'),
-            _image('assets/maths/ch10/four.png'),
-            _image('assets/maths/ch10/five.png'),
-            _image('assets/maths/ch10/six.png'),
-            _image('assets/maths/ch10/seven.png'),
-            _image('assets/maths/ch10/eight.png'),
-            _image('assets/maths/ch10/nine.png'),
-            _image('assets/maths/ch10/ten.png'),
-            _image('assets/maths/ch10/eleven.png'),
-            _image('assets/maths/ch10/twelve.png'),
-            _image('assets/maths/ch10/thirteen.png'),
-            _image('assets/maths/ch10/fifteen.png'),
-            _image('assets/maths/ch10/sixteen.png'),
-            _image('assets/maths/ch10/seventeen.png'),
-            _image('assets/maths/ch10/eighteen.png'),
-            _image('assets/maths/ch10/nineteen.png'),
-            _image('assets/maths/ch10/twenty.png'),
-            _image('assets/maths/ch10/twentyone.png'),
-            _image('assets/maths/ch10/twentythree.png'),
-            _image('assets/maths/ch10/twentyfour.png'),
-            _image('assets/maths/ch10/twentyfive.png'),
-            _image('assets/maths/ch10/twentysix.png'),
-            _image('assets/maths/ch10/twentyseven.png'),
-            _image('assets/maths/ch10/twentyeight.png'),
-            _image('assets/maths/ch10/twentynine.png'),
-            _image('assets/maths/ch10/thirty.png'),
-            _image('assets/maths/ch10/thirtyone.png'),
-            _image('assets/maths/ch10/thirtytwo.png'),
-            _image('assets/maths/ch10/thirtythree.png'),
-            _image('assets/maths/ch10/thirtyfour.png'),
-            _image('assets/maths/ch10/thirtyfive.png'),
-            _image('assets/maths/ch10/thirtysix.png'),
-          ],
+        body: Center(
+          child: Builder(
+            builder: (context) => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
+                RaisedButton(
+                  color: Colors.cyan,
+                  child: Text("Open"),
+                  onPressed: () {
+                    if (assetPDFPath != null) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  PdfViewPage(path: assetPDFPath)));
+                    }
+                  },
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
-Widget _image(String ImgPath) {
-  return Column(
-    children: [
-      Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.green),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Image.asset(
-          ImgPath,
-          fit: BoxFit.cover,
-        ),
-      ),
-    ],
-  );
+class PdfViewPage extends StatefulWidget {
+  final String path;
+
+  const PdfViewPage({Key key, this.path}) : super(key: key);
+  @override
+  _PdfViewPageState createState() => _PdfViewPageState();
 }
+
+class _PdfViewPageState extends State<PdfViewPage> {
+  int _totalPages = 0;
+  int _currentPage = 0;
+  bool pdfReady = false;
+  PDFViewController _pdfViewController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("My Document"),
+      ),
+      body: Stack(
+        children: <Widget>[
+          PDFView(
+            filePath: widget.path,
+            autoSpacing: true,
+            enableSwipe: true,
+            pageSnap: true,
+            swipeHorizontal: true,
+            nightMode: false,
+            onError: (e) {
+              print(e);
+            },
+            onRender: (_pages) {
+              setState(() {
+                _totalPages = _pages;
+                pdfReady = true;
+              });
+            },
+            onViewCreated: (PDFViewController vc) {
+              _pdfViewController = vc;
+            },
+            onPageChanged: (int page, int total) {
+              setState(() {});
+            },
+            onPageError: (page, e) {},
+          ),
+          !pdfReady
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Offstage()
+        ],
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          _currentPage > 0
+              ? FloatingActionButton.extended(
+                  backgroundColor: Colors.red,
+                  label: Text("Go to ${_currentPage - 1}"),
+                  onPressed: () {
+                    _currentPage -= 1;
+                    _pdfViewController.setPage(_currentPage);
+                  },
+                )
+              : Offstage(),
+          _currentPage + 1 < _totalPages
+              ? FloatingActionButton.extended(
+                  backgroundColor: Colors.green,
+                  label: Text("Go to ${_currentPage + 1}"),
+                  onPressed: () {
+                    _currentPage += 1;
+                    _pdfViewController.setPage(_currentPage);
+                  },
+                )
+              : Offstage(),
+        ],
+      ),
+    );
+  }
+}
+

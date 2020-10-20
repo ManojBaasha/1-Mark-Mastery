@@ -18,6 +18,15 @@ class _APEState2 extends State<APE2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Illustrate with examples the limitations of Williamson’s synthesis for the preparation of certain types of ethers.',
       'answers': [
         {
@@ -181,18 +190,34 @@ class _APEState2 extends State<APE2> {
     // dummy = [];
     // questions = []; // does not work if questions is a const
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Q And A'),
+    return WillPopScope(
+      onWillPop: () {
+        runApp(APE());
+      },
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Q And A'),
+          ),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Result(_resetQuiz),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              runApp(APE());
+            },
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+            ),
+            heroTag: "Back",
+          ),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(_resetQuiz),
       ),
     );
   }

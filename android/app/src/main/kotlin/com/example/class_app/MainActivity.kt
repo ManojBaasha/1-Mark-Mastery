@@ -1,4 +1,4 @@
-package com.example.class_app
+package com.manojelango.onemarkmastery
 
 import io.flutter.embedding.android.FlutterActivity
 

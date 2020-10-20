@@ -17,6 +17,15 @@ class EC2 extends StatefulWidget {
 class _ECState2 extends State<EC2> {
   final _questions = const [
     {
+      'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
       'questionText': 'What is primary cell? Give an example.',
       'answers': [
         {
@@ -135,18 +144,34 @@ class _ECState2 extends State<EC2> {
     // dummy = [];
     // questions = []; // does not work if questions is a const
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Q And A'),
+    return WillPopScope(
+      onWillPop: () {
+        runApp(EC());
+      },
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Q And A'),
+          ),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Result(_resetQuiz),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              runApp(EC());
+            },
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+            ),
+            heroTag: "Back",
+          ),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(_resetQuiz),
       ),
     );
   }

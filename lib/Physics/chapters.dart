@@ -35,98 +35,103 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF21BFBD),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 15.0, left: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  color: Colors.white,
-                  onPressed: () {
-                    runApp(FrontPage());
-                  },
+    return WillPopScope(
+        onWillPop: () {
+          runApp(FrontPage());
+        },
+        child: Scaffold(
+          backgroundColor: Color(0xFF21BFBD),
+          body: ListView(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 15.0, left: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      color: Colors.white,
+                      onPressed: () {
+                        runApp(FrontPage());
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 25.0),
+              Padding(
+                padding: EdgeInsets.only(left: 40.0),
+                child: Row(
+                  children: <Widget>[
+                    Text('Physics',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.0)),
+                    SizedBox(width: 10.0),
+                    Text('Chapters',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontSize: 25.0))
+                  ],
+                ),
+              ),
+              SizedBox(height: 40.0),
+              Container(
+                height: MediaQuery.of(context).size.height - 185.0,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                ),
+                child: ListView(
+                  primary: false,
+                  padding: EdgeInsets.only(left: 25.0, right: 20.0),
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(top: 45.0),
+                        child: Container(
+                            height: MediaQuery.of(context).size.height - 300.0,
+                            child: ListView(children: [
+                              _buildFoodItem(EC(), 'Electric Charge, Fields',
+                                  '', 'assets/images/physics2.png'),
+                              _buildFoodItem(ES(), 'Electrostatic Potential',
+                                  '', 'assets/images/physics2.png'),
+                              _buildFoodItem(CE(), 'Current Electricity', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(MC(), 'Magnetism', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(MM(), 'Magnetic Moment', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(EI(), 'Electromagnet Induct.', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(AC(), 'Alternating Current', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(EW(), 'Electromagnetic Waves', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(RO(), 'Ray Optics', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(WO(), 'Wave Optics', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(DN(), 'Dual Nature ', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(A(), 'Atoms', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(N(), 'Nuclei', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(S(), 'Semiconductor', '',
+                                  'assets/images/physics2.png'),
+                              _buildFoodItem(C(), 'Communication Systems', '',
+                                  'assets/images/physics2.png'),
+                            ]))),
+                  ],
+                ),
+              )
+            ],
           ),
-          SizedBox(height: 25.0),
-          Padding(
-            padding: EdgeInsets.only(left: 40.0),
-            child: Row(
-              children: <Widget>[
-                Text('Physics',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0)),
-                SizedBox(width: 10.0),
-                Text('Chapters',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: 25.0))
-              ],
-            ),
-          ),
-          SizedBox(height: 40.0),
-          Container(
-            height: MediaQuery.of(context).size.height - 185.0,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
-            ),
-            child: ListView(
-              primary: false,
-              padding: EdgeInsets.only(left: 25.0, right: 20.0),
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(top: 45.0),
-                    child: Container(
-                        height: MediaQuery.of(context).size.height - 300.0,
-                        child: ListView(children: [
-                          _buildFoodItem(EC(), 'Electric Charge, Fields', '',
-                              'assets/images/physics.png'),
-                          _buildFoodItem(ES(), 'Electrostatic Potential', '',
-                              'assets/images/physics.png'),
-                          _buildFoodItem(CE(), 'Current Elactricity', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(MC(), 'Magnetism', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(MM(), 'Magnetism And Matter', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(EI(), 'Electromagnet Induct.', '',
-                              'assets/images/physics.png'),
-                          _buildFoodItem(AC(), 'Alternationg Current', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(EW(), 'Electromagnetic Waves', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(RO(), 'Ray Optics', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(WO(), 'Wave Optics', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(DN(), 'Dual Nature ', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(
-                              A(), 'Atoms', '', 'assets/images/physics2.png'),
-                          _buildFoodItem(
-                              N(), 'Nuclei', '', 'assets/images/physics2.png'),
-                          _buildFoodItem(S(), 'Semiconductor', '',
-                              'assets/images/physics2.png'),
-                          _buildFoodItem(C(), 'Communication Systems', '',
-                              'assets/images/physics2.png'),
-                        ]))),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _buildFoodItem(

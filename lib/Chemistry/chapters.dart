@@ -34,99 +34,104 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF21BFBD),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 15.0, left: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  color: Colors.white,
-                  onPressed: () {
-                    runApp(FrontPage());
-                  },
+    return WillPopScope(
+        onWillPop: () {
+          runApp(FrontPage());
+        },
+        child: Scaffold(
+          backgroundColor: Color(0xFF21BFBD),
+          body: ListView(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 15.0, left: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      color: Colors.white,
+                      onPressed: () {
+                        runApp(FrontPage());
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 25.0),
+              Padding(
+                padding: EdgeInsets.only(left: 40.0),
+                child: Row(
+                  children: <Widget>[
+                    Text('Chemistry',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.0)),
+                    SizedBox(width: 10.0),
+                    Text('Chapters',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontSize: 25.0))
+                  ],
+                ),
+              ),
+              SizedBox(height: 40.0),
+              Container(
+                height: MediaQuery.of(context).size.height - 185.0,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                ),
+                child: ListView(
+                  primary: false,
+                  padding: EdgeInsets.only(left: 25.0, right: 20.0),
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(top: 45.0),
+                        child: Container(
+                            height: MediaQuery.of(context).size.height - 300.0,
+                            child: ListView(children: [
+                              _buildFoodItem(
+                                  TeXViewDocumentExamples(),
+                                  'Specific Name Reactions',
+                                  '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(SS(), 'The Solid State', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(S(), 'Solutions', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(EC(), 'ElectroChemistry', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(CK(), 'Chemical Kinetics', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(SC(), 'Surface Chemistry', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(P(), 'The p_block', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(DF(), 'The d_block and f_block',
+                                  '', 'assets/chemistry_chapters.png'),
+                              _buildFoodItem(CC(), 'Coordinate Compounds', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(HH(), 'Haloalkenes,HaloArenes', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(APE(), 'Alcohols,Phenols,Ethers',
+                                  '', 'assets/chemistry_chapters.png'),
+                              _buildFoodItem(AKC(), 'Aldehydes,Ketones', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(A(), 'Amines', '',
+                                  'assets/chemistry_chapters.png'),
+                              _buildFoodItem(B(), 'BioMolecules', '',
+                                  'assets/chemistry_chapters.png'),
+                            ]))),
+                  ],
+                ),
+              )
+            ],
           ),
-          SizedBox(height: 25.0),
-          Padding(
-            padding: EdgeInsets.only(left: 40.0),
-            child: Row(
-              children: <Widget>[
-                Text('Chemistry',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0)),
-                SizedBox(width: 10.0),
-                Text('Chapters',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: 25.0))
-              ],
-            ),
-          ),
-          SizedBox(height: 40.0),
-          Container(
-            height: MediaQuery.of(context).size.height - 185.0,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
-            ),
-            child: ListView(
-              primary: false,
-              padding: EdgeInsets.only(left: 25.0, right: 20.0),
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(top: 45.0),
-                    child: Container(
-                        height: MediaQuery.of(context).size.height - 300.0,
-                        child: ListView(children: [
-                          _buildFoodItem(
-                              TeXViewDocumentExamples(),
-                              'Specific Name Reactions',
-                              '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(SS(), 'The Solid State', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(S(), 'Solutions', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(EC(), 'ElectroChemistry', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(CK(), 'Chemical Kinetics', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(SC(), 'Surface Chemistry', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(P(), 'The p_block', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(DF(), 'The d_block and f_block', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(CC(), 'Coordinate Compounds', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(HH(), 'Haloalkenes,HaloArenes', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(APE(), 'Alcohols,Phenols,Ethers', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(AKC(), 'Aldehydes,Ketones', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(A(), 'Amines', '',
-                              'assets/chemistry_chapters.png'),
-                          _buildFoodItem(B(), 'BioMolecules', '',
-                              'assets/chemistry_chapters.png'),
-                        ]))),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _buildFoodItem(

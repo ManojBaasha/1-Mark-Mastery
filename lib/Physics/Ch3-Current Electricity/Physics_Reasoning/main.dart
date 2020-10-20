@@ -18,6 +18,15 @@ class _CEState2 extends State<CE2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Two wires one of copper and other of manganin have same resistance and equal length . Which wire is thicker and Why?[March 2016]',
       'answers': [
         {
@@ -235,6 +244,17 @@ class _CEState2 extends State<CE2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerDocked,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                runApp(CE());
+              },
+              child: Icon(
+                Icons.arrow_back_ios_rounded,
+              ),
+              heroTag: "Back",
+            ),
       ),
     );
   }

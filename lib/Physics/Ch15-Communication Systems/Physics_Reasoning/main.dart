@@ -19,6 +19,15 @@ class _CState2 extends State<C2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Why are repeaters used in communication system?[March 2015]',
       'answers': [
         {
@@ -331,6 +340,16 @@ class _CState2 extends State<C2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(C());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

@@ -19,6 +19,15 @@ class _SState2 extends State<S2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'What happens when a forward bias is a applied to a p-n junction ?   ( AI 2015)',
       'answers': [
         {
@@ -221,6 +230,16 @@ class _SState2 extends State<S2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(S());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

@@ -17,6 +17,15 @@ class CC2 extends StatefulWidget {
 class _CCState2 extends State<CC2> {
   final _questions = const [
     {
+      'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
       'questionText': 'Define coordination number.',
       'answers': [
         {
@@ -60,18 +69,34 @@ class _CCState2 extends State<CC2> {
     // dummy = [];
     // questions = []; // does not work if questions is a const
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Q And A'),
+    return WillPopScope(
+      onWillPop: () {
+        runApp(CC());
+      },
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Q And A'),
+          ),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Result(_resetQuiz),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              runApp(CC());
+            },
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+            ),
+            heroTag: "Back",
+          ),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(_resetQuiz),
       ),
     );
   }

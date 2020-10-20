@@ -19,6 +19,15 @@ class _DNState2 extends State<DN2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Two particles have equal momenta. what is the ratio of their de-Broglie wavelengths?[Sample Question Paper 2018-19]',
       'answers': [
         {
@@ -147,6 +156,16 @@ class _DNState2 extends State<DN2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(DN());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

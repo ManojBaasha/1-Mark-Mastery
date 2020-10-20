@@ -18,6 +18,15 @@ class _SCState2 extends State<SC2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'Physisorption is reversible while chemisorption is irreversible. Why? [Foreign 2015)',
       'answers': [
         {
@@ -355,18 +364,34 @@ class _SCState2 extends State<SC2> {
     // dummy = [];
     // questions = []; // does not work if questions is a const
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Q And A'),
+    return WillPopScope(
+      onWillPop: () {
+        runApp(SC());
+      },
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Q And A'),
+          ),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Result(_resetQuiz),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              runApp(SC());
+            },
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+            ),
+            heroTag: "Back",
+          ),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(_resetQuiz),
       ),
     );
   }

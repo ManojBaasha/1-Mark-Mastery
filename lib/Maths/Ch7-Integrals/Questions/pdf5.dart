@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp5> {
   void initState() {
     super.initState();
 
-    getFileFromAsset("assets/maths/indefiniteintegrals5.pdf").then((f) {
+    getFileFromAsset("assets/maths/5.pdf").then((f) {
       setState(() {
         assetPDFPath = f.path;
         print(assetPDFPath);
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp5> {
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/indefiniteintegrals5.pdf");
+      File file = File("${dir.path}/5.pdf");
 
       File assetFile = await file.writeAsBytes(bytes);
       return assetFile;
@@ -105,7 +105,7 @@ class _PdfViewPageState extends State<PdfViewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Integrals"),
+        title: Text("Open it, I dare you"),
       ),
       body: Stack(
         children: <Widget>[

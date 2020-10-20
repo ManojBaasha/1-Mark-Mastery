@@ -16,14 +16,6 @@ class MC extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             ListTile(
-              leading: Icon(Icons.add_box),
-              title: Text('Definitions', style: new TextStyle(fontSize: 30.0)),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                runApp(TeXViewDocumentExamples());
-              },
-            ),
-            ListTile(
               leading: Icon(Icons.question_answer),
               title:
                   Text("Question Bank", style: new TextStyle(fontSize: 30.0)),

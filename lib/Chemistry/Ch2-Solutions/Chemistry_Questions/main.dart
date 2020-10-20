@@ -18,6 +18,15 @@ class _SState2 extends State<S2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'State the main advantage of molality over molarity as the unit of concentration. [Delhi 2010C;DoE]',
       'answers': [
         {
@@ -258,18 +267,34 @@ class _SState2 extends State<S2> {
     // dummy = [];
     // questions = []; // does not work if questions is a const
 
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Q And A'),
+    return WillPopScope(
+      onWillPop: () {
+        runApp(S());
+      },
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text('Q And A'),
+          ),
+          body: _questionIndex < _questions.length
+              ? Quiz(
+                  answerQuestion: _answerQuestion,
+                  questionIndex: _questionIndex,
+                  questions: _questions,
+                )
+              : Result(_resetQuiz),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              runApp(S());
+            },
+            child: Icon(
+              Icons.arrow_back_ios_rounded,
+            ),
+            heroTag: "Back",
+          ),
         ),
-        body: _questionIndex < _questions.length
-            ? Quiz(
-                answerQuestion: _answerQuestion,
-                questionIndex: _questionIndex,
-                questions: _questions,
-              )
-            : Result(_resetQuiz),
       ),
     );
   }

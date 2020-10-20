@@ -6,34 +6,39 @@ import 'Chemistry_Questions/main.dart';
 class B extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Chemistry"),
-          backgroundColor: Colors.indigoAccent,
-        ),
-        body: ListView(
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.question_answer),
-              title:
-                  Text("Question Bank", style: new TextStyle(fontSize: 30.0)),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                runApp(B2());
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.arrow_back),
-              title: Text("Back",
-                  style: new TextStyle(
-                    fontSize: 30.0,
-                  )),
-              onTap: () {
-                runApp(Chemistry());
-              },
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: () {
+        runApp(Chemistry());
+      },
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("Chemistry"),
+            backgroundColor: Colors.indigoAccent,
+          ),
+          body: ListView(
+            children: <Widget>[
+              ListTile(
+                leading: Icon(Icons.question_answer),
+                title:
+                    Text("Question Bank", style: new TextStyle(fontSize: 30.0)),
+                trailing: Icon(Icons.keyboard_arrow_right),
+                onTap: () {
+                  runApp(B2());
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.arrow_back),
+                title: Text("Back",
+                    style: new TextStyle(
+                      fontSize: 30.0,
+                    )),
+                onTap: () {
+                  runApp(Chemistry());
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

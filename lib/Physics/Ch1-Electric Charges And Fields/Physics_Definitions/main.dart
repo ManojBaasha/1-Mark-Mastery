@@ -6,7 +6,7 @@ import 'package:class_app/Physics/Ch1-Electric Charges And Fields/physics.dart';
 class TeXExample {
   static TeXViewWidget one =
       _teXViewWidget(r"""<h4> Electrostatics: </h4>""", r""" 
-       The branch of physics that deals the study of forces, fields and potential arising from static charges.<br>
+       The branch of physics that deals with the study of forces, fields and potential arising from static charges.<br>
       """);
   static TeXViewWidget two =
       _teXViewWidget(r"""<h4> Quantisation of Charge: </h4>""", r""" 
@@ -19,11 +19,6 @@ class TeXExample {
   static TeXViewWidget four =
       _teXViewWidget(r"""<h4>Additive nature of Charge:   </h4>""", r""" 
      	The total electric charge of a body is equal to the algebraic sum of all electric charges located anywhere in the body.
-      """);
-  static TeXViewWidget five =
-      _teXViewWidget(r"""<h4> Coulomb's Law: </h4>""", r""" 
-     	
-		
       """);
   static TeXViewWidget six = _teXViewWidget(
       r"""<h4>Principle of superposition of electric forces:   </h4>""", r""" 
@@ -43,11 +38,7 @@ class TeXExample {
       """);
   static TeXViewWidget ten =
       _teXViewWidget(r"""<h4>Electric dipole:  </h4>""", r""" 
-     is a pair of equal and opposite point charges separated by a very small distance	
-      """);
-  static TeXViewWidget eleven =
-      _teXViewWidget(r"""<h4> Electric dipole moment : </h4>""", r""" 
-    The direction is from (-)ve charge to the (+) charge  	
+     is a pair of equal and opposite point charges separated by a very small distance	\n The direction is from (-)ve charge to the (+) charge 
       """);
   static TeXViewWidget twelve =
       _teXViewWidget(r"""<h4>Gauss's law in electrostatics:  </h4>""", r""" 
@@ -131,13 +122,11 @@ class TeXViewDocumentExamples extends StatelessWidget {
               TeXExample.two,
               TeXExample.three,
               TeXExample.four,
-              TeXExample.five,
               TeXExample.six,
               TeXExample.seven,
               TeXExample.eight,
               TeXExample.nine,
               TeXExample.ten,
-              TeXExample.eleven,
               TeXExample.twelve,
               TeXExample.thirteen,
               TeXExample.fourteen,
@@ -171,19 +160,16 @@ class TeXViewDocumentExamples extends StatelessWidget {
               ),
             ),
           ),
-          Ink(
-            color: Colors.green[900],
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: ListTile(
-              leading: Icon(Icons.add_circle),
-              title: Text('Back',
-                  style: new TextStyle(fontSize: 15.0, color: Colors.white)),
-              trailing: Icon(Icons.keyboard_arrow_right),
+          ListTile(
+              leading: Icon(Icons.arrow_back),
+              title: Text("Back",
+                  style: new TextStyle(
+                    fontSize: 30.0,
+                  )),
               onTap: () {
                 runApp(EC());
               },
             ),
-          ),
         ],
       ),
     ));

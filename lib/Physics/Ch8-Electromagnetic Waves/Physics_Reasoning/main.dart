@@ -19,6 +19,15 @@ class _EWState2 extends State<EW2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'A variable frequency AC source is connected to a capacitor. Will the displacement current change if the frequency of the AC source is decreased?[Compartment 2015]',
       'answers': [
         {
@@ -413,6 +422,16 @@ class _EWState2 extends State<EW2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(EW());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

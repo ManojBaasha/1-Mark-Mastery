@@ -19,7 +19,7 @@ class _ECState2 extends State<EC2> {
   final _questions = const [
     {
       'questionText':
-          "Each question in this section consist only of the basic definitions of the chapter. For each question Press the answer to move to the next question",
+          "For each question Press the answer to move to the next question",
       'answers': [
         {
           'text': "Start!",
@@ -79,7 +79,7 @@ class _ECState2 extends State<EC2> {
       'answers': [
         {
           'text':
-              "In case of sheet of charge, the clectric field is constant. Hence,F qE will be same irrespective of distance.",
+              "In case of sheet of charge, the electric field is constant. Hence,F qE will be same irrespective of distance.",
         },
       ],
     },
@@ -480,6 +480,16 @@ class _ECState2 extends State<EC2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(EC());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }

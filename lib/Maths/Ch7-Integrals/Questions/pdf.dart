@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    getFileFromAsset("assets/maths/indefiniteintegrals1.pdf").then((f) {
+    getFileFromAsset("assets/maths/1.pdf").then((f) {
       setState(() {
         assetPDFPath = f.path;
         print(assetPDFPath);
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/indefiniteintegrals1.pdf");
+      File file = File("${dir.path}/1.pdf");
 
       File assetFile = await file.writeAsBytes(bytes);
       return assetFile;
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Flutter PDF Tutorial"),
+          title: Text("Open it, I dare you"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             color: Colors.white,

@@ -111,247 +111,251 @@ class TeXViewDocumentExamples extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return WillPopScope(
+      onWillPop: () {
+        runApp(Chemistry());
+      },
+      child: MaterialApp(
         home: Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text("Organic Chemistry Reactions"),
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            title: Text("Organic Chemistry Reactions"),
+          ),
+          body: ListView(
+            physics: ScrollPhysics(),
+            children: <Widget>[
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXExample.sandmeyer,
+                  TeXExample.gatterman,
+                  TeXExample.finkel,
+                  TeXExample.balz,
+                  TeXExample.chemistryEquations,
+                  TeXExample.swartz,
+                  TeXExample.wurtz,
+                  TeXExample.stephen,
+                  TeXExample.tollen,
+                  TeXExample.fehling,
+                  TeXExample.kolbe,
+                ]),
+                style: TeXViewStyle(
+                  margin: TeXViewMargin.all(10),
+                  elevation: 10,
+                  borderRadius: TeXViewBorderRadius.all(25),
+                  border: TeXViewBorder.all(
+                    TeXViewBorderDecoration(
+                        borderColor: Colors.blue,
+                        borderStyle: TeXViewBorderStyle.Solid,
+                        borderWidth: 5),
+                  ),
+                  backgroundColor: Colors.white,
+                ),
+                loadingWidgetBuilder: (context) => Center(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      CircularProgressIndicator(),
+                      Text("The Window is loading. Please Wait..........")
+                    ],
+                  ),
+                ),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Coupling Reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'Benzene diazonium chloride reacts with phenol molecule at its para position is coupled with the diazonium salt to form p-hydroxyazobenzene. This type of reaction is known as coupling reaction.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/coupling.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Wurtz-Fittig Reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'A mixture of an alkyl halide and aryl halides gives an alkylarene when treated with sodium in dry ether and is called wurtz fittig reaction'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/wurtsfittig.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Fitting Reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'Aryl halides also gave analogous compounds when treated with sodium in dry ether, in which two aryl groups are joined together. It is called Fitting reaction.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/fittig.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(
+                      r"""<h2>Friedel – Crafts alkylation Reaction.</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'When benzene is treated with an alkyl halide in the presence of aluminium chloride , alkylbenene is formed.'
+                      'Note : Aromatic carboxylic acids do not undergo Friedel – Crafts reaction because the carboxyl group is deactivating and the catalyst aluminium chloride ( Lewis acid ) gets bonded to the carboxyl group.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/friedal2.jpg'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(
+                      r"""<h2>Friedel Crafts acylation reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'The reaction of benzene with an  acyl halide or acid anhydride in the presence of Lewis acids ( AlCl 3) yields acyl benzene.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/friedal1.jpg '),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Reimer – Tiemann Reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'On treating phenol with chloroform in the presence of sodium hydroxide , a –CHO group is introduced at ortho position of benzene ring resulting salicylaldehyde. This reaction is known as Reimer-Tiemann reaction.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/reimer.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Kolbe’s Reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'Phenol with sodium hydroxide gives sodium phenoxide ion which with carbon di acidic medium results hydroxybenzoic acid ( salicylic acid ). This is known as Kolbe’s reaction.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/kolbe.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Rosenmund Reduction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'acyl Chloride (acid chloride is hydrogenated over catalyst , palladium or barium sulphate.)'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/reosemund.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Etard reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'Chromyl chloride oxidizes methyl group to a chromium complex , which on hydrolysis gives corresponding benzaldehyde . This reaction is called Etard reaction.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/retard.jpg'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Gatterman- Koch reaction</h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'When benzene or its derivative is treated with carbon monoxide and hydrogen chloride in the presence of anhydrous aluminium chloride or cuprous chloride, it gives benzaldehyde or substituted benzaldehyde. This reaction is known as Gatterman – Koch reaction.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/koch.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              TeXView(
+                renderingEngine: renderingEngine,
+                child: TeXViewColumn(children: [
+                  TeXViewDocument(r"""<h2>Hinsberg’s Test </h2>""",
+                      style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
+                  TeXViewDocument(
+                      'In the reaction with secondary amine, N, N-diethyl – benzenesulphonamide is formed. Since N, N- diethylbenzene sulphonamide does not contain any hydrogen atom attached to nitrogen atom, it is not acidic and hence insoluble in alkali.'),
+                  TeXViewContainer(
+                    child: TeXViewImage.asset('assets/images/hinsberg.png'),
+                    style: TeXViewStyle(
+                      margin: TeXViewMargin.all(10),
+                      borderRadius: TeXViewBorderRadius.all(20),
+                    ),
+                  ),
+                ]),
+              ),
+              ListTile(
+                leading: Icon(Icons.arrow_back),
+                title: Text("Back",
+                    style: new TextStyle(
+                      fontSize: 30.0,
+                    )),
+                onTap: () {
+                  runApp(Chemistry());
+                },
+              ),
+            ],
+          ),
+        ),
       ),
-      body: ListView(
-        physics: ScrollPhysics(),
-        children: <Widget>[
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXExample.sandmeyer,
-              TeXExample.gatterman,
-              TeXExample.finkel,
-              TeXExample.balz,
-              TeXExample.chemistryEquations,
-              TeXExample.swartz,
-              TeXExample.wurtz,
-              TeXExample.stephen,
-              TeXExample.tollen,
-              TeXExample.fehling,
-              TeXExample.kolbe,
-            ]),
-            style: TeXViewStyle(
-              margin: TeXViewMargin.all(10),
-              elevation: 10,
-              borderRadius: TeXViewBorderRadius.all(25),
-              border: TeXViewBorder.all(
-                TeXViewBorderDecoration(
-                    borderColor: Colors.blue,
-                    borderStyle: TeXViewBorderStyle.Solid,
-                    borderWidth: 5),
-              ),
-              backgroundColor: Colors.white,
-            ),
-            loadingWidgetBuilder: (context) => Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  CircularProgressIndicator(),
-                  Text("The Window is loading. Please Wait..........")
-                ],
-              ),
-            ),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Coupling Reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'Benzene diazonium chloride reacts with phenol molecule at its para position is coupled with the diazonium salt to form p-hydroxyazobenzene. This type of reaction is known as coupling reaction.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/coupling.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Wurtz-Fittig Reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'A mixture of an alkyl halide and aryl halides gives an alkylarene when treated with sodium in dry ether and is called wurtz fittig reaction'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/wurtsfittig.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Fitting Reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'Aryl halides also gave analogous compounds when treated with sodium in dry ether, in which two aryl groups are joined together. It is called Fitting reaction.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/fittig.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(
-                  r"""<h2>Friedel – Crafts alkylation Reaction.</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'When benzene is treated with an alkyl halide in the presence of aluminium chloride , alkylbenene is formed.'
-                  'Note : Aromatic carboxylic acids do not undergo Friedel – Crafts reaction because the carboxyl group is deactivating and the catalyst aluminium chloride ( Lewis acid ) gets bonded to the carboxyl group.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/friedal2.jpg'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Friedel Crafts acylation reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'The reaction of benzene with an  acyl halide or acid anhydride in the presence of Lewis acids ( AlCl 3) yields acyl benzene.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/friedal1.jpg '),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Reimer – Tiemann Reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'On treating phenol with chloroform in the presence of sodium hydroxide , a –CHO group is introduced at ortho position of benzene ring resulting salicylaldehyde. This reaction is known as Reimer-Tiemann reaction.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/reimer.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Kolbe’s Reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'Phenol with sodium hydroxide gives sodium phenoxide ion which with carbon di acidic medium results hydroxybenzoic acid ( salicylic acid ). This is known as Kolbe’s reaction.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/kolbe.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Rosenmund Reduction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'acyl Chloride (acid chloride is hydrogenated over catalyst , palladium or barium sulphate.)'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/reosemund.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Etard reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'Chromyl chloride oxidizes methyl group to a chromium complex , which on hydrolysis gives corresponding benzaldehyde . This reaction is called Etard reaction.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/retard.jpg'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Gatterman- Koch reaction</h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'When benzene or its derivative is treated with carbon monoxide and hydrogen chloride in the presence of anhydrous aluminium chloride or cuprous chloride, it gives benzaldehyde or substituted benzaldehyde. This reaction is known as Gatterman – Koch reaction.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/koch.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          TeXView(
-            renderingEngine: renderingEngine,
-            child: TeXViewColumn(children: [
-              TeXViewDocument(r"""<h2>Hinsberg’s Test </h2>""",
-                  style: TeXViewStyle(textAlign: TeXViewTextAlign.Center)),
-              TeXViewDocument(
-                  'In the reaction with secondary amine, N, N-diethyl – benzenesulphonamide is formed. Since N, N- diethylbenzene sulphonamide does not contain any hydrogen atom attached to nitrogen atom, it is not acidic and hence insoluble in alkali.'),
-              TeXViewContainer(
-                child: TeXViewImage.asset('assets/images/hinsberg.png'),
-                style: TeXViewStyle(
-                  margin: TeXViewMargin.all(10),
-                  borderRadius: TeXViewBorderRadius.all(20),
-                ),
-              ),
-            ]),
-          ),
-          Ink(
-            color: Colors.green[900],
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
-            child: ListTile(
-              leading: Icon(Icons.add_circle),
-              title: Text('Back',
-                  style: new TextStyle(fontSize: 15.0, color: Colors.white)),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                runApp(Chemistry());
-              },
-            ),
-          ),
-        ],
-      ),
-    ));
+    );
   }
 }

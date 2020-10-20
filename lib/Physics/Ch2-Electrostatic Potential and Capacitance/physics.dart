@@ -16,15 +16,6 @@ class ES extends StatelessWidget {
         body: ListView(
           children: <Widget>[
             ListTile(
-              leading: Icon(Icons.add_box),
-              title: Text('Basic Definitions',
-                  style: new TextStyle(fontSize: 30.0)),
-              trailing: Icon(Icons.keyboard_arrow_right),
-              onTap: () {
-                runApp(TeXViewDocumentExamples());
-              },
-            ),
-            ListTile(
               leading: Icon(Icons.question_answer),
               title:
                   Text("Board Questions", style: new TextStyle(fontSize: 30.0)),

@@ -5,9 +5,7 @@ import 'Ch2-Inverse Trigonometric Functions/Maths.dart';
 import 'Ch3-Matrices/Maths.dart';
 import 'Ch4-Determinants/Maths.dart';
 import 'Ch5-Continuity And Differentiablility/Maths.dart';
-import 'Ch6-Application Of Derivatives/Maths.dart';
 import 'Ch7-Integrals/Maths.dart';
-import 'Ch8-Application Of Integrals/Maths.dart';
 import 'Ch9-Differential Equations/Maths.dart';
 import 'Ch10-Vector Algebra/Maths.dart';
 import 'Ch11-Three Dimennsional Geometry/Maths.dart';
@@ -33,97 +31,98 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF21BFBD),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(top: 15.0, left: 10.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(Icons.arrow_back_ios),
-                  color: Colors.white,
-                  onPressed: () {
-                    runApp(FrontPage());
-                  },
+    return WillPopScope(
+        onWillPop: () {
+          runApp(FrontPage());
+        },
+        child: Scaffold(
+          backgroundColor: Color(0xFF21BFBD),
+          body: ListView(
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(top: 15.0, left: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    IconButton(
+                      icon: Icon(Icons.arrow_back_ios),
+                      color: Colors.white,
+                      onPressed: () {
+                        runApp(FrontPage());
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+              SizedBox(height: 25.0),
+              Padding(
+                padding: EdgeInsets.only(left: 40.0),
+                child: Row(
+                  children: <Widget>[
+                    Text('Maths',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.0)),
+                    SizedBox(width: 10.0),
+                    Text('Chapters',
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            fontSize: 25.0))
+                  ],
+                ),
+              ),
+              SizedBox(height: 40.0),
+              Container(
+                height: MediaQuery.of(context).size.height - 185.0,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:
+                      BorderRadius.only(topLeft: Radius.circular(75.0)),
+                ),
+                child: ListView(
+                  primary: false,
+                  padding: EdgeInsets.only(left: 25.0, right: 20.0),
+                  children: <Widget>[
+                    Padding(
+                        padding: EdgeInsets.only(top: 45.0),
+                        child: Container(
+                            height: MediaQuery.of(context).size.height - 300.0,
+                            child: ListView(children: [
+                              _buildFoodItem(
+                                  TeXViewDocumentExamples(),
+                                  'Assertion,Reasoning',
+                                  '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(RF(), 'Relations,Functions', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(ITF(), 'Inverse Trigonometry', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(M(), 'Matrices', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(D(), 'Determinants', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(CD(), 'Continuity', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(I(), 'Integrals', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(DE(), 'Differential Equations', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(VA(), 'Vector Algebra', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(DG(), '3D Geometry', '',
+                                  'assets/images/maths2.png'),
+                              _buildFoodItem(P(), 'Probability', '',
+                                  'assets/images/maths2.png'),
+                            ]))),
+                  ],
+                ),
+              )
+            ],
           ),
-          SizedBox(height: 25.0),
-          Padding(
-            padding: EdgeInsets.only(left: 40.0),
-            child: Row(
-              children: <Widget>[
-                Text('Maths',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0)),
-                SizedBox(width: 10.0),
-                Text('Chapters',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        color: Colors.white,
-                        fontSize: 25.0))
-              ],
-            ),
-          ),
-          SizedBox(height: 40.0),
-          Container(
-            height: MediaQuery.of(context).size.height - 185.0,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(75.0)),
-            ),
-            child: ListView(
-              primary: false,
-              padding: EdgeInsets.only(left: 25.0, right: 20.0),
-              children: <Widget>[
-                Padding(
-                    padding: EdgeInsets.only(top: 45.0),
-                    child: Container(
-                        height: MediaQuery.of(context).size.height - 300.0,
-                        child: ListView(children: [
-                          _buildFoodItem(
-                              TeXViewDocumentExamples(),
-                              'Assertion,Reasoning',
-                              '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(RF(), 'Relations,Functions', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(ITF(), 'Inverse Trigonometry', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(
-                              M(), 'Matrices', '', 'assets/images/maths2.png'),
-                          _buildFoodItem(D(), 'Determinants', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(CD(), 'Continuity', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(AD(), 'Application Derivative', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(
-                              I(), 'Integrals', '', 'assets/images/maths2.png'),
-                          _buildFoodItem(AI(), 'Derivatives', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(DE(), 'Differential Equations', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(VA(), 'Vector Algebra', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(DG(), '3D Geometry', '',
-                              'assets/images/maths2.png'),
-                          _buildFoodItem(P(), 'Probability', '',
-                              'assets/images/maths2.png'),
-                        ]))),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 
   Widget _buildFoodItem(

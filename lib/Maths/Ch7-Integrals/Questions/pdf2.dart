@@ -13,14 +13,14 @@ class MyApp2 extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp2> {
-  String assetPDFPath = "";
+  String assetPDFPath = "assets/maths/2.pdf";
   String urlPDFPath = "";
 
   @override
   void initState() {
     super.initState();
 
-    getFileFromAsset("assets/maths/indefiniteintegrals2.pdf").then((f) {
+    getFileFromAsset("assets/maths/2.pdf").then((f) {
       setState(() {
         assetPDFPath = f.path;
         print(assetPDFPath);
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp2> {
       var data = await rootBundle.load(asset);
       var bytes = data.buffer.asUint8List();
       var dir = await getApplicationDocumentsDirectory();
-      File file = File("${dir.path}/indefiniteintegrals2.pdf");
+      File file = File("assets/maths/2.pdf");
 
       File assetFile = await file.writeAsBytes(bytes);
       return assetFile;
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp2> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Flutter PDF Tutorial"),
+          title: Text("Open it, I dare you"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back_ios),
             color: Colors.white,
@@ -74,7 +74,7 @@ class _MyAppState extends State<MyApp2> {
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  PdfViewPage(path: assetPDFPath)));
+                                  PdfViewPage(path: "assets/maths/2.pdf")));
                     }
                   },
                 )

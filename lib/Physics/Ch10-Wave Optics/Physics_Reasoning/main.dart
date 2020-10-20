@@ -18,6 +18,15 @@ class _WOState2 extends State<WO2> {
   final _questions = const [
     {
       'questionText':
+          "For each question Press the answer to move to the next question",
+      'answers': [
+        {
+          'text': "Start!",
+        },
+      ],
+    },
+    {
+      'questionText':
           'A beam of unpolarized light is incident, on the boundary between the two transparent media, at an angle of incidence=iB,the Brewesters angle. At what angle does the reflected light get polarized?[Compartment 2016]',
       'answers': [
         {
@@ -228,6 +237,16 @@ class _WOState2 extends State<WO2> {
                 questions: _questions,
               )
             : Result(_resetQuiz),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            runApp(WO());
+          },
+          child: Icon(
+            Icons.arrow_back_ios_rounded,
+          ),
+          heroTag: "Back",
+        ),
       ),
     );
   }
