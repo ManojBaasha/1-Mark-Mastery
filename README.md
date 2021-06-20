@@ -1,6 +1,6 @@
-# class_app
+# A simple mobile Application
 
-A new Flutter application.
+A mobile applicatin using flutter and Dart 
 
 ## Getting Started
 
